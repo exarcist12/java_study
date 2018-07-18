@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook;
 
-public class ContactForm {
+public class ContactData {
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -18,7 +18,7 @@ public class ContactForm {
   private final String phone2;
   private final String notes;
 
-  public ContactForm(String FirstName, String MiddleName, String LastName, String Nickname, String Title, String Company, String Address, String home, String mobile, String work, String fax, String email, String homepage, String address2, String phone2, String notes) {
+  public ContactData(String FirstName, String MiddleName, String LastName, String Nickname, String Title, String Company, String Address, String home, String mobile, String work, String fax, String email, String homepage, String address2, String phone2, String notes) {
     firstName = FirstName;
     middleName = MiddleName;
     lastName = LastName;
