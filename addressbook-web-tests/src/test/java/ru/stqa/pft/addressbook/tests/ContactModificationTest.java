@@ -13,7 +13,7 @@ public class ContactModificationTest extends TestBase {
 
   @Test
   public void testContactModification () {
-    app.getNavigationHelper().goToHomeContacts();
+
 
     app.getNavigationHelper().gotoGroupPage();
     if (! app.getGroupHelper().isThereAGroup()){
@@ -23,6 +23,7 @@ public class ContactModificationTest extends TestBase {
     if (! app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData("Dlyamodificacii", "Petrov", "Vodkin", "Stas", "Stas", "BSS", "LibertyCity", "70001112233", "81112223334", "SS", "45678912300", "exarcist12@yandex.ru", "yandex.ru", "test", "test", "test", "FirstTestGroup"));
     }
+    app.getNavigationHelper().goToHomeContacts();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().clickSelectedContact(before.size() - 1);
     app.getContactHelper().initContactModification();
