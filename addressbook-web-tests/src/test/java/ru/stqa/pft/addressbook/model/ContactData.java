@@ -1,9 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
-import java.util.Objects;
-
 public class ContactData {
-  private final String id;
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -22,11 +19,7 @@ public class ContactData {
   private final String notes;
   private String group;
 
-
-
-  public ContactData( String FirstName, String MiddleName, String LastName, String Nickname, String Title, String Company, String Address, String home, String mobile, String work, String fax, String email, String homepage, String address2, String phone2, String notes, String group) {
-
-    this.id=null;
+  public ContactData(String FirstName, String MiddleName, String LastName, String Nickname, String Title, String Company, String Address, String home, String mobile, String work, String fax, String email, String homepage, String address2, String phone2, String notes, String group) {
     firstName = FirstName;
     middleName = MiddleName;
     lastName = LastName;
@@ -44,32 +37,6 @@ public class ContactData {
     this.phone2 = phone2;
     this.notes = notes;
     this.group = group;
-  }
-
-  public ContactData(String id, String FirstName, String MiddleName, String LastName, String Nickname, String Title, String Company, String Address, String home, String mobile, String work, String fax, String email, String homepage, String address2, String phone2, String notes, String group) {
-
-    this.id=id;
-    firstName = FirstName;
-    middleName = MiddleName;
-    lastName = LastName;
-    nickname = Nickname;
-    title = Title;
-    company = Company;
-    address = Address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
-    this.homepage = homepage;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;
-    this.group = group;
-  }
-
-  public String getId() {
-    return id;
   }
 
   public String getFirstName() {
@@ -138,30 +105,5 @@ public class ContactData {
 
   public String getGroup() {
     return group;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return Objects.equals(id, that.id) &&
-            Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, firstName, lastName);
   }
 }

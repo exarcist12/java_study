@@ -3,14 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContactHelper extends HelperBase{
 
@@ -66,9 +62,9 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void clickSelectedContact(int index) {
+  public void clickSelectedContact() {
     if (!wd.findElement(By.name("selected[]")).isSelected()) {
-      wd.findElements(By.name("selected[]")).get(index).click();
+      click(By.name("selected[]"));
     }
   }
 
@@ -92,19 +88,4 @@ public class ContactHelper extends HelperBase{
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getContactCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
-
-  public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      String  name = "Stas";
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
-      ContactData contact = new ContactData (id, name, "Petrov", "Vodkin", "Stas", "Stas", "BSS", "LibertyCity", "70001112233", "81112223334", "SS", "45678912300", "exarcist12@yandex.ru", "yandex.ru", "test", "test", "test", "FirstTestGroup");
-      contacts.add (contact);
-    }
-    return contacts;
-  }
 }
