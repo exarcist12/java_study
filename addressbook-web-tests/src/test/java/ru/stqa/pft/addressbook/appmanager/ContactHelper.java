@@ -3,12 +3,17 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
-public class ContactHelper extends HelperBase{
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContactHelper extends HelperBase {
 
 
   public ContactHelper(WebDriver wd) {
@@ -24,30 +29,30 @@ public class ContactHelper extends HelperBase{
   }
 
   public void fillContactForm(ContactData contactForm, boolean creation) {
-    type(By.name("firstname"),contactForm.getFirstName());
-    type(By.name("middlename"),contactForm.getMiddleName());
-    type(By.name("lastname"),contactForm.getLastName());
-    type(By.name("nickname"),contactForm.getNickname());
-    type(By.name("title"),contactForm.getTitle());
-    type(By.name("company"),contactForm.getCompany());
-    type(By.name("address"),contactForm.getAddress());
-    type(By.name("home"),contactForm.getHome());
-    type(By.name("mobile"),contactForm.getMobile());
-    type(By.name("work"),contactForm.getWork());
-    type(By.name("fax"),contactForm.getFax());
-    type(By.name("email"),contactForm.getEmail());
-    type(By.name("homepage"),contactForm.getHomepage());
-    type(By.name("address2"),contactForm.getAddress2());
-    type(By.name("phone2"),contactForm.getPhone2());
-    type(By.name("notes"),contactForm.getNotes());
+    type(By.name("firstname"), contactForm.getFirstName());
+    type(By.name("middlename"), contactForm.getMiddleName());
+    type(By.name("lastname"), contactForm.getLastName());
+    type(By.name("nickname"), contactForm.getNickname());
+    type(By.name("title"), contactForm.getTitle());
+    type(By.name("company"), contactForm.getCompany());
+    type(By.name("address"), contactForm.getAddress());
+    type(By.name("home"), contactForm.getHome());
+    type(By.name("mobile"), contactForm.getMobile());
+    type(By.name("work"), contactForm.getWork());
+    type(By.name("fax"), contactForm.getFax());
+    type(By.name("email"), contactForm.getEmail());
+    type(By.name("homepage"), contactForm.getHomepage());
+    type(By.name("address2"), contactForm.getAddress2());
+    type(By.name("phone2"), contactForm.getPhone2());
+    type(By.name("notes"), contactForm.getNotes());
 
 
     if (creation) {
-      new Select (wd.findElement(By.name("new_group"))).selectByVisibleText(contactForm.getGroup());
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactForm.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-   }
+  }
 
   public void addNewContact() {
     click(By.id("container"));
@@ -76,7 +81,7 @@ public class ContactHelper extends HelperBase{
     click(By.name("update"));
   }
 
-  public void createContact (ContactData contact) {
+  public void createContact(ContactData contact) {
 
     addNewContact();
     fillContactForm(contact, true);
@@ -91,5 +96,19 @@ public class ContactHelper extends HelperBase{
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
 
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(3).getText();
+      String lastname = cells.get(2).getText();
+
+      ContactData contact = new ContactData(firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
