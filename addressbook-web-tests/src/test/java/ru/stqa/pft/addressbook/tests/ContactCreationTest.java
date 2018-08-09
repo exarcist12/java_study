@@ -14,13 +14,13 @@ public class ContactCreationTest extends TestBase{
   public void testContactCreation() {
     app.goTo().groupPage();
     if (! app.group().isThereAGroup()){
-      app.group().create(new GroupData("FirstTestGroup", null, null));
+      app.group().create(new GroupData().withName("FirstGroup"));
     }
 
     app.goTo().contactPage();
 
     List<ContactData> before = app.contact().list();
-    ContactData contact = new ContactData("Stas", null, "Markin", null, null, null,null,null,null,null,null,null,null,null,null,null,"FirstTestGroup");
+    ContactData contact = new ContactData().withFirstName("Stas").withLastName("Markin").withGroup("FirstTestGroup");
     app.contact().create(contact);
     app.goTo().contactPage();
 
