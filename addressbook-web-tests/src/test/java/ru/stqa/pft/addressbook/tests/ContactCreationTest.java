@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase{
 
-  @Test
+  @Test (enabled = false)
   public void testContactCreation() {
     app.getNavigationHelper().gotoGroupPage();
     if (! app.getGroupHelper().isThereAGroup()){
