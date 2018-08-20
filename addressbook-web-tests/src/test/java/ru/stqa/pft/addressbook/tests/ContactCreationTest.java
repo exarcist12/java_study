@@ -51,7 +51,7 @@ public class ContactCreationTest extends TestBase{
 
 
 
-  @Test
+  @Test (enabled = false)
   public void testCurrentDir() {
     File currentDir = new File (".");
     System.out.println(currentDir.getAbsolutePath());

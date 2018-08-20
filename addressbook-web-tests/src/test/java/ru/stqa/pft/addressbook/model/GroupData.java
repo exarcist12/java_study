@@ -1,7 +1,11 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import java.util.Objects;
 
+
+@XStreamAlias("group")
 public class GroupData {
 
 
