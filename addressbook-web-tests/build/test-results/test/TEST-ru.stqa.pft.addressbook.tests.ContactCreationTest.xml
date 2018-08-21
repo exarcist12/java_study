@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactCreationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-08-21T16:07:37" hostname="Lenovo-PC" time="37.853">
+  <properties/>
+  <testcase name="testContactCreation[0](ContactData{id='2147483647', firstName='Stas 0', lastName='Petrov 0'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTest" time="16.38"/>
+  <testcase name="testContactCreation[1](ContactData{id='2147483647', firstName='Stas 1', lastName='Petrov 1'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTest" time="10.553"/>
+  <testcase name="testContactCreation[2](ContactData{id='2147483647', firstName='Stas 2', lastName='Petrov 2'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTest" time="10.919"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Security framework of XStream not initialized, XStream is probably vulnerable.
+]]></system-err>
+</testsuite>
