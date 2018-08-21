@@ -1,0 +1,20 @@
+<list>
+  <contact>
+    <id>2147483647</id>
+    <firstName>Stas 0</firstName>
+    <lastName>Petrov 0</lastName>
+    <group>test</group>
+  </contact>
+  <contact>
+    <id>2147483647</id>
+    <firstName>Stas 1</firstName>
+    <lastName>Petrov 1</lastName>
+    <group>test</group>
+  </contact>
+  <contact>
+    <id>2147483647</id>
+    <firstName>Stas 2</firstName>
+    <lastName>Petrov 2</lastName>
+    <group>test</group>
+  </contact>
+</list>
