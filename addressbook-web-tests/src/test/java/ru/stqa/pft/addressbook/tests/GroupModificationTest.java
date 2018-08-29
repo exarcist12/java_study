@@ -24,10 +24,10 @@ public class GroupModificationTest extends TestBase {
   public void ensurePreconditions () {
 
     if (app.db().groups().size()== 0) {
-      app.goTo().groupPage();
-      app.group().create(new GroupData().withName("FirstTestGroup"));
-    }
-   }
+    app.goTo().groupPage();
+    app.group().create(new GroupData().withName("FirstTestGroup"));
+  }
+}
 
 
   @Test
