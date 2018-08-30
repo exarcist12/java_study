@@ -4,5 +4,7 @@
     <firstName>Stas 0</firstName>
     <lastName>Petrov 0</lastName>
     <group>test</group>
+    <home>123</home>
+    <mobile>456</mobile>
   </contact>
  </list>

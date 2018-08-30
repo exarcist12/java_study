@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.hibernate.annotations.Type;
 
@@ -15,72 +16,62 @@ public class ContactData {
   @Column (name="id")
   private  int id=Integer.MAX_VALUE;
 
+
   @Column (name="firstname")
   private  String firstName;
 
-  @Column (name="middlename")
+  @Transient
   private  String middleName;
+
 
   @Column (name="lastname")
   private  String lastName;
 
-  @Column (name="nickname")
+  @Transient
   private  String nickname;
 
-  @Column (name="title")
+  @Transient
   private  String title;
 
   @Transient
-  @Column (name="company")
-
   private  String company;
 
-  @Column (name="address")
-  @Type(type="text")
+  @Transient
   private  String address;
 
   @Column (name="home")
-  @Type(type="text")
+  @Type(type = "text")
   private  String home;
 
   @Column (name="mobile")
-  @Type(type="text")
+  @Type(type = "text")
   private  String mobile;
 
-  @Column (name="work")
-  @Type(type="text")
+  @Transient
   private  String work;
 
-  @Column (name="fax")
-  @Type(type="text")
+  @Transient
   private  String fax;
 
-  @Column (name="email")
-  @Type(type="text")
+  @Transient
   private  String email;
 
-  @Column (name="email2")
-  @Type(type="text")
+  @Transient
   private  String email2;
 
-  @Column (name="email3")
-  @Type(type="text")
+  @Transient
   private  String email3;
 
-  @Column (name="homepage")
-  @Type(type="text")
+  @Transient
   private  String homepage;
 
-  @Column (name="address2")
-  @Type(type="text")
+  @Transient
   private  String address2;
 
-  @Column (name="phone2")
-  @Type(type="text")
+  @Transient
   private  String phone2;
 
-  @Column (name="notes")
-  @Type(type="text")
+  @Transient
   private  String notes;
 
   @Transient
@@ -90,8 +81,7 @@ public class ContactData {
   private  String allPhones;
   @Transient
   private String allEmails;
-  @Column (name="photo")
-  @Type(type="text")
+  @Transient
   private String photo;
 
   public File getPhoto() {

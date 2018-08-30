@@ -53,7 +53,7 @@ public class ContactCreationTest extends TestBase{
     if (app.db().groups().size()== 0){
       app.group().create(new GroupData().withName("test"));
     }
-    app.goTo().contactPage();
+    //app.goTo().contactPage();
     Contacts before = app.db().contacts();
     //File photo = new File ("src/test/resources/stru.png");
     //ContactData contact = new ContactData().withFirstName("Stas").withLastName("Markin").withGroup("test").withPhoto(photo);
