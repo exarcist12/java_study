@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -50,7 +49,6 @@ public class ContactCreationTest extends TestBase{
 
   @Test(dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) {
-    Groups groups = app.db().groups();
     app.goTo().groupPage();
     if (app.db().groups().size()== 0){
       app.group().create(new GroupData().withName("test"));
@@ -75,7 +73,7 @@ public class ContactCreationTest extends TestBase{
     }
     app.goTo().contactPage();
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withFirstName("Stas'").withLastName("Markin");
+    ContactData contact = new ContactData().withFirstName("Stas'").withLastName("Markin").withGroup("test");
     app.contact().create(contact);
     app.goTo().contactPage();
     assertThat(app.contact().count(), equalTo(before.size()));

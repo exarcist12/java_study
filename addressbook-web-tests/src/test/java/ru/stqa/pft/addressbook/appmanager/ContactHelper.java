@@ -53,16 +53,11 @@ public class ContactHelper extends HelperBase {
     //attach(By.name("photo"), contactForm.getPhoto());
 
     if (creation) {
-      if (contactForm.getGroups().size() > 0) {
-
-        Assert.assertTrue(contactForm.getGroups().size() == 0);
-
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactForm.getGroups().iterator().next().getName());
-      }
-      } else {
-        Assert.assertFalse(isElementPresent(By.name("new_group")));
-      }
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactForm.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+  }
 
   public void addNewContact() {
     click(By.id("container"));
