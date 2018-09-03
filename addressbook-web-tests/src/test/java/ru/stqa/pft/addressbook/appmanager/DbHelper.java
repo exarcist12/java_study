@@ -46,4 +46,36 @@ public class DbHelper {
     session.close();
     return new Contacts(result);
   }
+
+
+  public Contacts contactsWithId(int id) {
+    Session session = sessionFactory.openSession();
+    session.getTransaction().begin();
+    List<ContactData> result = session.createQuery( "from ContactData where id = '"+id+"'", ContactData.class ).getResultList();
+    session.getTransaction().commit();
+    session.close();
+    //System.out.println("result: "+ result);
+    return new Contacts(result);
+
+  }
+
+  public int getContactLastId(ContactData contact){
+    Session session = sessionFactory.openSession();
+    session.getTransaction().begin();
+    List<ContactData> result = session.createQuery( "from ContactData where firstname = '"+contact.getFirstName()+ "'", ContactData.class ).getResultList();
+    session.getTransaction().commit();
+    session.close();
+    int maxId = result.get(0).getId();
+    for (int i = 0; i < result.size(); i++){
+      if (result.get(i).getId() > maxId){
+        maxId = result.get(i).getId();
+      }
+    }
+    //System.out.println("maxId: "+ maxId);
+    return maxId;
+  }
+
+
+
+
 }

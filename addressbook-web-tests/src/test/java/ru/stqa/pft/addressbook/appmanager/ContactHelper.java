@@ -83,6 +83,19 @@ public class ContactHelper extends HelperBase {
     }
   }
 
+  public void clickSubmitAddContactToGroup() {
+          wd.findElement(By.xpath("//input[@type='submit']")).click();
+
+  }
+
+  public void selectGroupForAdd(GroupData group){
+    Select selectgroup = new Select(wd.findElement(By.name("to_group")));
+    selectgroup.selectByVisibleText(group.getName());
+  }
+
+
+
+
   public void initContactModification(int index) {
     wd.findElements(By.xpath("//img[@title='Edit']")).get(index).click();
 
@@ -95,6 +108,15 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public void addToContact(ContactData contact, GroupData group){
+    clickSelectedContactById(contact.getId());
+    selectGroupForAdd(group);
+    clickSubmitAddContactToGroup();
+
+
+
   }
 
   public void create(ContactData contact) {
@@ -110,6 +132,13 @@ public class ContactHelper extends HelperBase {
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
+  }
+
+  public void delete(ContactData contact) {
+    clickSelectedContactById(contact.getId());
+    clickDeleteContact();
+    clickAcceptDeleteContact();
     contactCache = null;
   }
 
@@ -148,12 +177,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void delete(ContactData contact) {
-    clickSelectedContactById(contact.getId());
-    clickDeleteContact();
-    clickAcceptDeleteContact();
-    contactCache = null;
-  }
+
 
   public ContactData infoFromEditForm (ContactData contact) {
     initContactModificationById(contact.getId());
