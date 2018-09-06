@@ -84,13 +84,16 @@ public class ContactHelper extends HelperBase {
   }
 
   public void clickSubmitAddContactToGroup() {
-          wd.findElement(By.xpath("//input[@type='submit']")).click();
-
+          wd.findElement(By.xpath("//input[@value='Add to']")).click();
   }
 
-  public void selectGroupForAdd(GroupData group){
-    Select selectgroup = new Select(wd.findElement(By.name("to_group")));
-    selectgroup.selectByVisibleText(group.getName());
+  public void selectGroupForAdd(int id){
+    //Select selectgroup = new Select(wd.findElement(By.name("to_group")));
+    //selectgroup.selectByVisibleText(group.getName());
+
+    if (!wd.findElement(By.name("to_group")).isSelected()) {
+      wd.findElement(By.cssSelector("option[value='"+id+"']")).click();
+    }
   }
 
 
@@ -112,11 +115,8 @@ public class ContactHelper extends HelperBase {
 
   public void addToContact(ContactData contact, GroupData group){
     clickSelectedContactById(contact.getId());
-    selectGroupForAdd(group);
+    selectGroupForAdd(group.getId());
     clickSubmitAddContactToGroup();
-
-
-
   }
 
   public void create(ContactData contact) {
