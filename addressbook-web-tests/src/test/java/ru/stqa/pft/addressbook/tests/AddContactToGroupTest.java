@@ -22,53 +22,46 @@ public class AddContactToGroupTest extends TestBase {
 
   public void testAddContactToGroup() {
 
-    Contacts beforeContacts = app.db().contacts();
-    ContactData addContact =  beforeContacts.iterator().next();
-    Groups beforeGroups = app.db().groups();
-
-    System.out.println(addContact);
-    System.out.println(addContact.getGroups());
+    Contacts beforeAllContacts = app.db().contacts();
+    ContactData addContact =  beforeAllContacts.iterator().next();
+    Groups beforeAllGroups = app.db().groups();
     Groups resultBefore = addContact.getGroups();
+    int idContact = addContact.getId();
+    ContactData currentContact = new ContactData();
+    GroupData currentGroup = new GroupData();
 
 
-
-   // GroupData group = new GroupData();
-    for (GroupData group: beforeGroups) {
+    for (GroupData group: beforeAllGroups) {
       if (addContact.getGroups().contains(group)) {
 
         }
         else {
           app.goTo().contactPage();
           app.contact().addToContact(addContact, group);
-          //Groups testListGroup = addContact.getGroups();
+          currentGroup = group;
           break;
         }
     }
+    app.goTo().contactPage();
+    Contacts afterAllContacts = app.db().contacts();
+    for (ContactData contact: afterAllContacts){
+      if (contact.getId()==idContact){
+        currentContact = contact;
+        break;
+      }
+    }
+    Groups resultAfter = currentContact.getGroups();
 
-    Contacts afterContacts = app.db().contacts();
-    Groups afterGroups = app.db().groups();
-     Groups resultAfter = addContact.getGroups();
-  //  if (resultAfter.size()==resultBefore.size()) {
-   //   app.goTo().groupPage();
-    //  GroupData newGroup = new GroupData().withName("test");
-  //    app.group().create(newGroup);
-  //    app.goTo().contactPage();
-  //    app.contact().addToContact(addContact, newGroup);
-  //  }
- //   Groups resultLastAfter = addContact.getGroups();
-    //assertThat(resultLastAfter, equalTo(resultBefore.withAdded(group)));
+  if (resultAfter.size()==resultBefore.size()) {
+      app.goTo().groupPage();
+      GroupData newGroup = new GroupData().withName("test");
+      app.group().create(newGroup);
+      app.goTo().contactPage();
+      app.contact().addToContact(addContact, newGroup);
+      currentGroup = newGroup;
+    }
 
-     // if (group != currentGroup){
-      //  app.contact().addToContact(addContact, group);
-    //    break;
-  //    }
-
-
-
-
-   // System.out.println(addContact.getGroups());
-    //app.goTo().contactPage();
-  //  app.contact().addToContact(addContact, currentGroup);
+  assertThat(resultAfter, equalTo(resultBefore.withAdded(currentGroup)));
 
 
 
