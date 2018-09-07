@@ -115,7 +115,9 @@ public class ContactHelper extends HelperBase {
 
   public void addToContact(ContactData contact, GroupData group){
     clickSelectedContactById(contact.getId());
+    int idcon = contact.getId();
     selectGroupForAdd(group.getId());
+    int idgr = group.getId();
     clickSubmitAddContactToGroup();
   }
 
