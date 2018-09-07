@@ -31,13 +31,14 @@ public class RemoveContactFromGroupTest extends TestBase {
     Groups beforeAllGroups = app.db().groups();
     Groups resultBefore = removeContact.getGroups();
     GroupData addGroup = beforeAllGroups.iterator().next();
-    GroupData currentGroup = resultBefore.iterator().next();
+    GroupData currentGroup = new GroupData();// resultBefore.iterator().next();
     ContactData currentContact = new ContactData();
     int idContact = removeContact.getId();
     int idGroup = addGroup.getId();
 
 
-    if (resultBefore == null) {
+    if (resultBefore.size() == 0 ) {
+      app.goTo().contactPage();
       app.contact().addToContact(removeContact, addGroup);
       currentGroup = addGroup;
       beforeAllContacts = app.db().contacts();
@@ -48,8 +49,11 @@ public class RemoveContactFromGroupTest extends TestBase {
         }
       }
       resultBefore = currentContact.getGroups();
+      app.goTo().contactPage();
       app.contact().removeContactFromGroup(removeContact, currentGroup);
     } else {
+      currentGroup = resultBefore.iterator().next();
+      app.goTo().contactPage();
       app.contact().removeContactFromGroup(removeContact,currentGroup);
     }
     Contacts afterAllContacts = app.db().contacts();
