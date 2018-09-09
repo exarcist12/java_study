@@ -16,6 +16,7 @@ public class ChangePasswordTests extends TestBase{
 
   @Test
 
+
   public void testChangePassword() throws IOException, MessagingException {
 
     String email = "user12@localhost";
