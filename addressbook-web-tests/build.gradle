@@ -44,3 +44,6 @@ task testContacts (type: Test){
     }
 
 }
+test {
+    useTestNG()
+}
